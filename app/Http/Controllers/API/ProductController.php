@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Auth\API;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Auth\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
@@ -17,13 +17,10 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::all();
-        return $this->sendResponse(ProductResources::collection($product), 'product returned');
+        return $this->sendResponse(ProductResource::collection($product), 'product returned');
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(Request $request)
     {
         $input = $request->all();
@@ -37,9 +34,6 @@ class ProductController extends Controller
         return $this->sendResponse(new ProductResource($product), 'product is created');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $input = $request->all();
@@ -62,17 +56,11 @@ class ProductController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Product $product): JsonResponse
     {
         $input = $request->all();
@@ -88,9 +76,6 @@ class ProductController extends Controller
         return $this->sendResponse(new ProductResource($product), 'updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Product $product): JsonResponse
     {
         $product->delete();
