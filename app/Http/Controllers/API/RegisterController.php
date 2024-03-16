@@ -42,7 +42,8 @@ class RegisterController extends Controller
             $success['token'] = $user->createToken('myApp')->accessToken;
 //            return $user->createToken('tokenCreated')->token->user_id;
             $success['name'] = $user->name;
-// I will send notification to user after register , I put the logic in observer\UserObserver
+
+//I will send notification to user after register , I put the logic in observer\UserObserver
 //            Notification::send($user,new LoginNotification());
 
 //            Notification::send($user,new LoginNotification());//this send email after login

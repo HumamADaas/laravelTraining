@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Notifications\LoginNotification;
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
     public function login(Request $request)
