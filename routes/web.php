@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\ResetPassword;
+use App\Http\Controllers\EventAndListener;
 use App\Mail\TestMail;
 use App\Notifications\LoginNotification;
 use Illuminate\Support\Facades\Mail;
@@ -39,4 +40,11 @@ Route::group(['prefix' => 'toResetPassword'], function () {
     //page contains field to reset password
     Route::get('FieldNewPassword/{token}', [ResetPassword::class, 'viewNewPassword'])->name('VNP');
     Route::post('FieldNewPass/{token}', [ResetPassword::class, 'putNewPassword'])->name('PNP');
+});
+
+//event and listener : send email after login
+Route::group(['prefix' => 'eventAndListener'], function () {
+
+    Route::get('pageLogin', [EventAndListener::class,'getLogin']);
+    Route::post('pageLogin', [EventAndListener::class,'postLogin'])->name('eventListener');
 });
