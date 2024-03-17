@@ -7,16 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EmailLogin extends Notification
+class EmailAfterEvent extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public $message, $title;
+
+    public function __construct($mesaage,$title)
     {
-        //
+        $this->message = $mesaage;
+        $this->title = $title;
     }
 
     /**
@@ -35,9 +38,11 @@ class EmailLogin extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('the listener for login event is sending email')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject($this->title)
+            ->line('the listener for login event is sending email')
+            ->action('Notification Action', url('/'))
+            ->line('Thank you for using our application!')
+            ->line($this->message);
     }
 
     /**

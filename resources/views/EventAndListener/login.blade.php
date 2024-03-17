@@ -46,7 +46,7 @@
 <body>
 <div class="login-container">
     <h2>Login</h2>
-    <form action="{{route('eventListener')}}" method="post">
+    <form action="{{route('loginEvent')}}" method="post">
         @csrf
         <input type="email" class="login-input" placeholder="Email" name="email" required>
         <input type="password" class="login-input" placeholder="Password" name="password" required>

@@ -20,9 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        LoginEvent::class => [
-          EmailListener::class,
-        ],
+//        LoginEvent::class => [
+//          EmailListener::class,
+//        ],
     ];
 
     /**
@@ -40,4 +40,13 @@ class EventServiceProvider extends ServiceProvider
     {
         return false;
     }
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        EmailListener::class,
+    ];
 }

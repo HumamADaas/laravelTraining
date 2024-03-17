@@ -46,5 +46,6 @@ Route::group(['prefix' => 'toResetPassword'], function () {
 Route::group(['prefix' => 'eventAndListener'], function () {
 
     Route::get('pageLogin', [EventAndListener::class,'getLogin']);
-    Route::post('pageLogin', [EventAndListener::class,'postLogin'])->name('eventListener');
+    Route::post('pageLogin', [EventAndListener::class,'postLogin'])->name('loginEvent');
+    Route::post('logout/{id}',[EventAndListener::class,'logout'])->name('logoutEvent');
 });

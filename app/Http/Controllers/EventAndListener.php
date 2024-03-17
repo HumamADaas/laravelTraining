@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\LoginEvent;
-use App\Notifications\EventAndListener\EmailLogin;
+use App\Events\Logoutevent;
+use App\Notifications\EventAndListener\EmailAfterEvent;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -30,10 +31,19 @@ class EventAndListener extends Controller
             LoginEvent::dispatch($user);
 
             // Return a response indicating successful login
-            return 'Login is done. An email will be sent to the user.';
+            return view('EventAndListener.logout')->with('user',$user);
         }
         // Return a response indicating login failure
         return 'Invalid email or password.';
 
+    }
+
+    public function logout($id)
+    {
+        $user = User::where('id',$id)->first();
+
+        logoutevent::dispatch($user);
+
+        return 'logout is done, check your email';
     }
 }
