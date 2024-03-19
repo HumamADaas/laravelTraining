@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\EventAndListener;
+use App\Http\Controllers\socialit\SocialiteController;
 use App\Mail\TestMail;
 use App\Notifications\LoginNotification;
 use Illuminate\Support\Facades\Mail;
@@ -49,3 +50,18 @@ Route::group(['prefix' => 'eventAndListener'], function () {
     Route::post('pageLogin', [EventAndListener::class,'postLogin'])->name('loginEvent');
     Route::post('logout/{id}',[EventAndListener::class,'logout'])->name('logoutEvent');
 });
+
+Route::get('socialite',[SocialiteController::class,'login']);
+
+//Google login
+Route::get('login/google',[SocialiteController::class,'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback',[SocialiteController::class,'handleGoogleCallback']);
+
+//Facebook login
+Route::get('login/facebook',[SocialiteController::class,'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback',[SocialiteController::class,'handleFacebookCallback']);
+
+//Github login
+Route::get('login/github',[SocialiteController::class,'redirectToGithub'])->name('login.github');
+Route::get('login/github/callback',[SocialiteController::class,'handleGithubCallback']);
+
