@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\EventAndListener;
+use App\Http\Controllers\Queue\UserController;
 use App\Http\Controllers\socialit\SocialiteController;
 use App\Mail\TestMail;
 use App\Notifications\LoginNotification;
@@ -65,3 +66,5 @@ Route::get('login/facebook/callback',[SocialiteController::class,'handleFacebook
 Route::get('login/github',[SocialiteController::class,'redirectToGithub'])->name('login.github');
 Route::get('login/github/callback',[SocialiteController::class,'handleGithubCallback']);
 
+//queue
+Route::get('usersActive',[UserController::class,'index']);

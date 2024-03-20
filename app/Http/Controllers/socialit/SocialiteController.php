@@ -27,7 +27,7 @@ class SocialiteController extends Controller
         $user = Socialite::driver('google')->user();
         $accessToken = $user->token;
         $this->_RegisterOrLoginUser($user);
-        return "login using google  is successfully. the user data : $user .and your token is:$accessToken";
+        return "login using github is successfully, the user data: " . json_encode($user) . ". Your token is: $accessToken";
     }
 
     //facebook login
@@ -66,7 +66,7 @@ class SocialiteController extends Controller
             $user->name = $data->name ?? 'GitHub User'; // Set a default name if GitHub doesn't provide one
             $user->email = $data->email;
             $user->provider_id = $data->id;
-//            $user->avatar = $data->avatar;
+            $user->avatar = $data->avatar;
             $user->save();
         }
         Auth::login($user);

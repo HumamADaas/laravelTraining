@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -25,6 +26,11 @@ class ActiveUsers implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        $users_ids = User::where('status',1)->pluck('id');
+        foreach ($users_ids as $id){
+            User::where('id',$id)->update([
+                'status'=> 0
+            ]);
+        }
     }
 }
