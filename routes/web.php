@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\Register;
 use App\Http\Controllers\Auth\ResetPassword;
 use App\Http\Controllers\EventAndListener;
+use App\Http\Controllers\QR\QRUsers;
 use App\Http\Controllers\Queue\UserController;
 use App\Http\Controllers\socialit\SocialiteController;
 use App\Mail\TestMail;
@@ -11,10 +12,10 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 //trying to send email
 Route::get('/sendEmail', function () {
     Mail::to('homam@gmail.com')->send(new TestMail());
@@ -68,3 +69,6 @@ Route::get('login/github/callback',[SocialiteController::class,'handleGithubCall
 
 //queue
 Route::get('usersActive',[UserController::class,'index']);
+
+//queue
+Route::get('users',[QRUsers::class,'userEncryption']);

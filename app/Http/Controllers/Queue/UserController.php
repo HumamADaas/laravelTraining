@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         ActiveUsers::dispatch(); //->delay(now()->second(40))
-        
+
         return 'status updated...';
 
     }
